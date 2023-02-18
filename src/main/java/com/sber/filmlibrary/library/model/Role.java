@@ -5,17 +5,20 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Set;
+
 @Entity
 @Table(name = "role")
 @Getter
 @Setter
 @NoArgsConstructor
-public class Role {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+@SequenceGenerator(name = "default_generator", sequenceName = "role_seq", allocationSize = 1)
+public class Role extends GenericModel {
     private Long id;
     @Column(name = "title", nullable = false)
     private String title;
     @Column(name = "description")
     private String description;
+    @OneToMany(mappedBy = "role")
+    private Set<Users> users;
 }
