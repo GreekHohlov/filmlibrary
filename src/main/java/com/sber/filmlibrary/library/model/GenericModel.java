@@ -16,8 +16,4 @@ public class GenericModel {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "default_generator")
     @Column(name = "id", nullable = false)
     private Long id;
-//    @Column(name = "created_by", nullable = false)
-//    private String createdBy;
-//    @Column(name = "created_when", nullable = false)
-//    private LocalDate createdWhen;
 }

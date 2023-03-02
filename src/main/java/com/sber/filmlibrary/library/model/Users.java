@@ -41,5 +41,5 @@ public class Users
     @JoinColumn(name = "role_id", nullable = false, foreignKey = @ForeignKey(name = "FK_USERS_ROLE"))
     private Role role;
     @OneToMany(mappedBy = "users")
-    private Set<Orders> ordersSet;
+    private Set<Orders> orders;
 }

@@ -14,7 +14,6 @@ import java.util.Set;
 @NoArgsConstructor
 @SequenceGenerator(name = "default_generator", sequenceName = "role_seq", allocationSize = 1)
 public class Role extends GenericModel {
-    private Long id;
     @Column(name = "title", nullable = false)
     private String title;
     @Column(name = "description")
