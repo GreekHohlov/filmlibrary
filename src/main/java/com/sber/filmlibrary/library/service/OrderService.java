@@ -37,7 +37,6 @@ public class OrderService extends GenericService<Orders, OrderDTO> {
         if (newEntity.getPurchase()){
             order.setPurchase(newEntity.getPurchase());
             order.setRentDate(LocalDateTime.now());
-            order.setRentPeriod(null);
         }
         else {
             order.setPurchase(newEntity.getPurchase());
