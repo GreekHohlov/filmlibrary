@@ -26,22 +26,23 @@ public class OrderService extends GenericService<Orders, OrderDTO> {
         this.orderRepository = orderRepository;
     }
 
-    public OrderDTO getFilm(OrderDTO newEntity) {
-        Films film = filmRepository.findById(newEntity.getFilmId())
-                .orElseThrow(() -> new NotFoundException("Фильм с id " + newEntity.getFilmId() + " не найден"));
-        Users user = userRepository.findById(newEntity.getUserId())
-                .orElseThrow(() -> new NotFoundException("Пользователь с id " + newEntity.getUserId() + " не найден"));
+    public OrderDTO getFilm(OrderDTO orderDTO) {
+        Films film = filmRepository.findById(orderDTO.getFilmId())
+                .orElseThrow(() -> new NotFoundException("Фильм с id " + orderDTO.getFilmId() + " не найден"));
+        Users user = userRepository.findById(orderDTO.getUserId())
+                .orElseThrow(() -> new NotFoundException("Пользователь с id " + orderDTO.getUserId() + " не найден"));
         Orders order = new Orders();
         order.setFilms(film);
         order.setUsers(user);
-        if (newEntity.getPurchase()){
-            order.setPurchase(newEntity.getPurchase());
+        if (orderDTO.getPurchase()){
+            order.setPurchase(orderDTO.getPurchase());
             order.setRentDate(LocalDateTime.now());
+            order.setRentPeriod(0);
         }
         else {
-            order.setPurchase(newEntity.getPurchase());
+            order.setPurchase(orderDTO.getPurchase());
             order.setRentDate(LocalDateTime.now());
-            order.setRentPeriod(newEntity.getRentPeriod());
+            order.setRentPeriod(orderDTO.getRentPeriod());
         }
         orderRepository.save(order);
         return mapper.toDTO(order);

@@ -1,5 +1,5 @@
 insert into role
-values ('USER', 'Роль пользователя'),
-       ( 'LIBRARIAN', 'Роль библиотекаря');
+values (1, 'Роль пользователя', 'USER'),
+       (2, 'Роль библиотекаря', 'LIBRARIAN');
 
 select * from role;

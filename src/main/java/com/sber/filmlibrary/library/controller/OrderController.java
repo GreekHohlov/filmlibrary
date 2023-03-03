@@ -1,17 +1,15 @@
 package com.sber.filmlibrary.library.controller;
 
+import com.sber.filmlibrary.library.Mapper.OrderMapper;
 import com.sber.filmlibrary.library.dto.OrderDTO;
 import com.sber.filmlibrary.library.model.Orders;
 import com.sber.filmlibrary.library.service.OrderService;
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(value = "/orders")
@@ -24,10 +22,10 @@ public class OrderController extends GenericController<Orders, OrderDTO> {
         this.orderService = orderService;
     }
     @Operation(description = "Взять фильм в аренду/купить", method = "getFilm")
-    @RequestMapping(value = "/getFilm", method = RequestMethod.POST,
-            produces = MediaType.APPLICATION_JSON_VALUE,
+    @RequestMapping(value = "/getFilm", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<OrderDTO> getFilm(@RequestBody OrderDTO newEntity){
+    public ResponseEntity<OrderDTO> create(@RequestBody OrderDTO newEntity){
+
         return ResponseEntity.status(HttpStatus.OK).body(orderService.getFilm(newEntity));
     }
 

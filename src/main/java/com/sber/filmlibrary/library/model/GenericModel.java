@@ -13,7 +13,7 @@ import lombok.Setter;
 public class GenericModel {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "default_generator")
     @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "default_generator")
     private Long id;
 }
