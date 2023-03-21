@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавить режиссёра к фильму</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <h3 class="mt-3 mb-3">Добавить режиссёра к фильму</h3>
+    <form style="max-width: 50vw" class="form-floating was-validated" novalidate method="POST"
+          th:action="@{/films/addDirector}" th:object="${filmForm}">
+
+        <div class="container">
+            <div class="row row-cols-2">
+                <div class="row">
+                    <div class="form-floating col" style="max-width: 5vw">
+                        <input class="form-control" type="text" th:value="${filmDTO.id}" name="id" placeholder="ID"
+                               id="id" readonly>
+                        <label for="id">ID</label>
+                    </div>
+                    <div class="form-floating col" style="max-width: 18vw">
+                        <input class="form-control" type="text" th:value="${filmDTO.getTitle()}" name="title" id="title"
+                               readonly>
+                        <label for="title">Название фильма</label>
+                    </div>
+                </div>
+                <div class="form-floating mb-3 col">
+                    <select class="form-select mb-3" name="directorsFio" id="directorsFio"
+                            aria-label=".form-select-lg">
+                        <option selected value="default">Выберите режиссёра</option>
+                        <option th:each="directors : ${director}"
+                                th:value="${directors.getId()}" th:text="${directors.getDirectorsFio()}"></option>
+                    </select>
+                    <label for="directorsFio">Режиссёр</label>
+                </div>
+            </div>
+        </div>
+        <div class="d-grid gap-2 mx-left">
+            <button type="submit" class="btn btn-primary">Добавить</button>
+            <button type="submit" class="btn btn-secondary" onclick="window.history.back()">Назад</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>

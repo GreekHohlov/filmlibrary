@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ru"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавить фильм</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <h3 class="mt-3 mb-3">Добавить новый фильм</h3>
+    <form style="max-width: 50vw" class="form-floating was-validated" novalidate method="POST"
+          th:action="@{/films/add}" th:object="${filmForm}">
+        <div class="container">
+            <div class="row row-cols-2">
+                <div class="form-floating mb-3 col">
+                    <input class="form-control" type="text" name="title" placeholder="Название фильма" id="title" required>
+                    <label for="title" class="form-label">Название фильма</label>
+                    <div class="invalid-feedback">Обязательное поле</div>
+                </div>
+                <div class="form-floating mb-3 col">
+                    <input type="date" class="form-control" id="premierYear" name="premierYear"
+                           placeholder="Дата премьеры" required>
+                    <label for="premierYear">Дата премьеры</label>
+                    <div class="invalid-feedback">Обязательное поле</div>
+                </div>
+                <div class="form-floating mb-3 col">
+                    <input type="text" class="form-control" id="country" name="country" placeholder="Страна" required>
+                    <label for="country">Страна</label>
+                    <div class="invalid-feedback">Обязательное поле</div>
+                </div>
+                <div class="form-floating mb-3 col">
+                    <input type="text" class="form-control" id="genre" name="genre" placeholder="Жанр" required>
+                    <label for="genre">Жанр</label>
+                    <div class="invalid-feedback">Обязательное поле</div>
+                </div>
+            </div>
+        </div>
+        <div class="d-grid gap-2 mx-left">
+            <button type="submit" class="btn btn-primary">Добавить</button>
+            <button type="submit" class="btn btn-secondary" onclick="window.history.back()">Назад</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>

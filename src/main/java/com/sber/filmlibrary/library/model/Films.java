@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 import java.time.LocalDate;
 import java.util.Set;
 
@@ -29,7 +28,8 @@ public class Films
     @ManyToMany
     @JoinTable(name = "film_directors",
             joinColumns = @JoinColumn(name = "film_id"), foreignKey = @ForeignKey(name = "FK_FILMS_DIRECTORS"),
-            inverseJoinColumns = @JoinColumn(name = "director_id"), inverseForeignKey = @ForeignKey(name = "FK_DIRECTORS_FILMS"))
+            inverseJoinColumns = @JoinColumn(name = "director_id"),
+            inverseForeignKey = @ForeignKey(name = "FK_DIRECTORS_FILMS"))
     private Set<Directors> directors;
     @OneToMany(mappedBy = "films")
     private Set<Orders> orders;
